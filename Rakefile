@@ -53,6 +53,15 @@ def test
   run_tests
 end
 
+def publish
+  clean
+  uninstall
+  build
+  publish_remote
+  install_remote
+  run_tests
+end
+
 namespace :gem do 
   task(:clean){clean}
   task(:build){build}
@@ -63,4 +72,5 @@ namespace :gem do
   task(:publish_remote){publish_remote}
   task(:run_tests){run_tests}
   task(:test){test}
+  task(:publish){publish}
 end
