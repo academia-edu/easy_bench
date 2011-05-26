@@ -11,6 +11,13 @@ class EasyBenchTest < Test::Unit::TestCase
 
     eb = EasyBench.new('Sleeping')
 
+    stats = eb.stats
+    assert_equal 0, stats[:count]
+    assert_nil stats[:min]
+    assert_nil stats[:max]
+    assert_equal 0, stats[:total]
+    assert_nil stats[:mean]
+
     1.upto(10).each do |i|
 
       eb.caller{sleep(i.to_f / 10)}

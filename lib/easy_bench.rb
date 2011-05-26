@@ -4,7 +4,7 @@ require 'sometimes_memoize'
 class EasyBench
   extend Forwardable
 
-  VERSION = '1.0'
+  VERSION = '1.0.1'
 
   attr_reader :dataset
 
@@ -60,7 +60,12 @@ class EasyBench
     sometimes_memoize :total_run_time
 
     def ave_run_time
-      (self.total_run_time / self.total_runs)
+      tr = self.total_runs
+      if 0 == tr
+        nil
+      else
+        (self.total_run_time / self.total_runs)
+      end
     end
     
     def report(bars=false)
